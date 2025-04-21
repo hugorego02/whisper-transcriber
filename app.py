@@ -3,8 +3,7 @@ import openai
 from flask import Flask, request, render_template
 import tempfile
 
-# Usa a variável de ambiente segura
-openai.api_key = os.getenv("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")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 
@@ -34,5 +33,7 @@ def index():
 
     return render_template('index.html', transcription=transcription)
 
+# ✅ Final com porta dinâmica para Render
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
