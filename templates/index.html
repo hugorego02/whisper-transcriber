@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Audio Transcription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .result-box {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
     <h2>Upload your audio file</h2>
+    <p><small>Supported formats: MP3, WAV, M4A, WEBM — Max size: 25MB</small></p>
+
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="audio" accept="audio/*" required>
         <button type="submit">Transcribe</button>
     </form>
 
     {% if transcription %}
-    <h3>Transcription Result:</h3>
-    <p>{{ transcription }}</p>
+    <div class="result-box">
+        <h3>Transcription Result:</h3>
+        <p>{{ transcription }}</p>
+    </div>
     {% endif %}
 </body>
 </html>
